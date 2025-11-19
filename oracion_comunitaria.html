@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Poder de la Oración en Comunidad</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --gold: #f1c40f;
+            --light: #ecf0f1;
+            --success: #27ae60;
+            --error: #c0392b;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f3;
+            background-image: linear-gradient(to bottom, #eef2f3, #8e9eab);
+            margin: 0;
+            padding: 0;
+            color: var(--primary);
+            min-height: 100vh;
+        }
+
+        /* Header & Stats */
+        header {
+            background-color: var(--card-bg);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .coin-display {
+            background-color: var(--primary);
+            color: var(--gold);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .hero {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .hero h1 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Game Section */
+        .game-area {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .quiz-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        button.option-btn {
+            background: var(--light);
+            border: 2px solid #bdc3c7;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--primary);
+        }
+
+        button.option-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            font-weight: bold;
+            min-height: 24px;
+        }
+
+        /* Store Section */
+        .store-section {
+            margin-top: 3rem;
+        }
+
+        .store-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .reward-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .reward-card.unlocked {
+            border: 2px solid var(--gold);
+            opacity: 1;
+            background: #fffdf0;
+        }
+
+        .reward-btn {
+            background: var(--gold);
+            color: #5d4d00;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .reward-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            color: #666;
+        }
+
+        .hidden-verse {
+            display: none;
+            margin-top: 10px;
+            font-style: italic;
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        .animate-coin {
+            animation: bounce 0.5s;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <span>🙏</span> Comunidad de Fe
+        </div>
+        <div class="coin-display" id="coinDisplay">
+            <span>🪙</span> <span id="score">0</span> Monedas
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <section class="hero">
+            <h1>El Poder de la Oración en Comunidad</h1>
+            <p>
+                Descubre cómo la unión en oración puede traer consuelo y fortaleza a quienes más lo necesitan.
+                Responde correctamente las preguntas bíblicas para ganar monedas y desbloquear promesas de Dios.
+            </p>
+            
+        </section>
+
+        <section class="game-area">
+            <div class="quiz-card">
+                <div style="margin-bottom: 10px; color: #7f8c8d;">Pregunta <span id="q-number">1</span></div>
+                <div class="question-text" id="question">Cargando pregunta...</div>
+                <div class="options-grid" id="options">
+                    </div>
+                <div class="feedback" id="feedback"></div>
+                <button id="next-btn" style="display:none; margin-top:1rem; background:var(--primary); color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Siguiente Pregunta ➡️</button>
+            </div>
+        </section>
+
+        <section class="store-section">
+            <h2 class="store-title">🏪 Tienda de Bendiciones</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Usa tus monedas para desbloquear versículos de fortaleza.</p>
+            
+            <div class="rewards-grid">
+                <div class="reward-card" id="reward-1">
+                    <h3>Fortaleza</h3>
+                    <p>Costo: 30 Monedas</p>
+                    <button class="reward-btn" onclick="buyReward(1, 30)">Desbloquear</button>
+                    <p class="hidden-verse" id="verse-1">"Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos." <br><b>- Mateo 18:20</b></p>
+                </div>
+
+                <div class="reward-card" id="reward-2">
+                    <h3>Sanidad</h3>
+                    <p>Costo: 60 Monedas</p>
+                    <button class="reward-btn" onclick="buyReward(2, 60)">Desbloquear</button>
+                    <p class="hidden-verse" id="verse-2">"Confesaos vuestras ofensas unos a otros, y orad unos por otros, para que seáis sanados." <br><b>- Santiago 5:16</b></p>
+                </div>
+
+                <div class="reward-card" id="reward-3">
+                    <h3>Unidad</h3>
+                    <p>Costo: 100 Monedas</p>
+                    <button class="reward-btn" onclick="buyReward(3, 100)">Desbloquear</button>
+                    <p class="hidden-verse" id="verse-3">"¡Mirad cuán bueno y cuán delicioso es habitar los hermanos juntos en armonía!" <br><b>- Salmos 133:1</b></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Game Data
+        const questions = [
+            {
+                q: "¿Qué dice Jesús sobre cuando dos o tres se reúnen en Su nombre?",
+                options: ["Él está en medio de ellos", "Habrá mucha comida", "Los ángeles cantarán", "No sucederá nada"],
+                correct: 0
+            },
+            {
+                q: "Según Santiago 5:16, ¿por qué debemos orar unos por otros?",
+                options: ["Para ser ricos", "Para que seáis sanados", "Para tener fama", "Para evitar problemas"],
+                correct: 1
+            },
+            {
+                q: "En Hechos 12, la iglesia oraba sin cesar por Pedro. ¿Qué sucedió?",
+                options: ["Pedro escapó nadando", "Un terremoto destruyó la ciudad", "Un ángel lo liberó de la cárcel", "Pedro predicó a los guardias"],
+                correct: 2
+            },
+            {
+                q: "¿Qué oración enseñó Jesús a sus discípulos que comienza en plural ('Padre Nuestro')?",
+                options: ["El Credo", "El Padre Nuestro", "El Ave María", "El Salmo 23"],
+                correct: 1
+            },
+            {
+                q: "¿Qué pidieron los primeros discípulos en Hechos 4 cuando oraron juntos?",
+                options: ["Denuedo (valor) para hablar la palabra", "Dinero para el templo", "Venganza contra romanos", "Poder político"],
+                correct: 0
+            }
+        ];
+
+        // State Variables
+        let currentScore = 0;
+        let currentQIndex = 0;
+        let unlockedRewards = [false, false, false, false]; // Index 0 unused
+
+        // DOM Elements
+        const scoreEl = document.getElementById('score');
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        const feedbackEl = document.getElementById('feedback');
+        const nextBtn = document.getElementById('next-btn');
+        const qNumEl = document.getElementById('q-number');
+
+        // Initialize Game
+        function loadQuestion() {
+            if (currentQIndex >= questions.length) {
+                // Game Over / Loop
+                questionEl.textContent = "¡Felicidades! Has completado todas las preguntas.";
+                optionsEl.innerHTML = "";
+                feedbackEl.textContent = "Sigue acumulando monedas reiniciando el juego.";
+                nextBtn.textContent = "Reiniciar Juego";
+                nextBtn.style.display = "inline-block";
+                nextBtn.onclick = resetGame;
+                return;
+            }
+
+            const q = questions[currentQIndex];
+            qNumEl.textContent = currentQIndex + 1;
+            questionEl.textContent = q.q;
+            optionsEl.innerHTML = "";
+            feedbackEl.textContent = "";
+            feedbackEl.className = "feedback";
+            nextBtn.style.display = "none";
+
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn";
+                btn.textContent = opt;
+                btn.onclick = () => checkAnswer(index, q.correct, btn);
+                optionsEl.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selected, correct, btnElement) {
+            // Disable all buttons
+            const allBtns = optionsEl.querySelectorAll('button');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selected === correct) {
+                btnElement.style.background = "#27ae60"; // Green
+                btnElement.style.color = "white";
+                btnElement.style.borderColor = "#27ae60";
+                feedbackEl.textContent = "¡Correcto! +10 Monedas";
+                feedbackEl.style.color = "#27ae60";
+                addCoins(10);
+            } else {
+                btnElement.style.background = "#c0392b"; // Red
+                btnElement.style.color = "white";
+                feedbackEl.textContent = "Incorrecto. La respuesta correcta era: " + questions[currentQIndex].options[correct];
+                feedbackEl.style.color = "#c0392b";
+                
+                // Highlight correct one
+                allBtns[correct].style.background = "#27ae60";
+                allBtns[correct].style.color = "white";
+            }
+
+            nextBtn.style.display = "inline-block";
+            nextBtn.onclick = () => {
+                currentQIndex++;
+                loadQuestion();
+            };
+        }
+
+        function addCoins(amount) {
+            currentScore += amount;
+            scoreEl.textContent = currentScore;
+            
+            // Animation effect
+            const coinContainer = document.getElementById('coinDisplay');
+            coinContainer.classList.remove('animate-coin');
+            void coinContainer.offsetWidth; // trigger reflow
+            coinContainer.classList.add('animate-coin');
+            
+            checkAffordability();
+        }
+
+        function resetGame() {
+            currentQIndex = 0;
+            loadQuestion();
+        }
+
+        // Store Logic
+        function buyReward(id, cost) {
+            if (currentScore >= cost && !unlockedRewards[id]) {
+                currentScore -= cost;
+                scoreEl.textContent = currentScore;
+                unlockedRewards[id] = true;
+
+                // UI Updates
+                const card = document.getElementById(`reward-${id}`);
+                const verse = document.getElementById(`verse-${id}`);
+                const btn = card.querySelector('button');
+
+                card.classList.add('unlocked');
+                verse.style.display = 'block';
+                btn.textContent = "¡Desbloqueado!";
+                btn.disabled = true;
+                
+                checkAffordability();
+            } else {
+                alert("No tienes suficientes monedas.");
+            }
+        }
+
+        function checkAffordability() {
+            // Optional: Disable buttons visually if can't afford
+            // This makes the UI more responsive
+        }
+
+        // Start
+        loadQuestion();
+
+    </script>
+</body>
+</html>
