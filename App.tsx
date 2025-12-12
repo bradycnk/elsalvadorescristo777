@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import Testimonials from './components/Testimonials';
 import ScrollReveal from './components/ScrollReveal';
 import WhatsAppButton from './components/WhatsAppButton';
+import Blog from './components/Blog';
 
 const App: React.FC = () => {
     return (
@@ -29,6 +30,10 @@ const App: React.FC = () => {
                 
                 <ScrollReveal>
                     <Programs />
+                </ScrollReveal>
+
+                <ScrollReveal>
+                    <Blog />
                 </ScrollReveal>
                 
                 <ScrollReveal>
