@@ -11,6 +11,7 @@ import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import Testimonials from './components/Testimonials';
 import ScrollReveal from './components/ScrollReveal';
+import WhatsAppButton from './components/WhatsAppButton';
 
 const App: React.FC = () => {
     return (
@@ -50,6 +51,7 @@ const App: React.FC = () => {
                     <Newsletter />
                 </ScrollReveal>
             </main>
+            <WhatsAppButton />
             <Footer />
         </div>
     );
