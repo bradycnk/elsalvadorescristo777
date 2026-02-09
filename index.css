@@ -1,0 +1,6 @@
+/* Archivo base de estilos globales.
+   Se mantiene para evitar referencias rotas en index.html. */
+
+:root {
+  color-scheme: light;
+}

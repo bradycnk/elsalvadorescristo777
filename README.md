@@ -1,20 +1,37 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Alianza Global Solidaria (React + Vite)
 
-# Run and deploy your AI Studio app
+Sitio web estático construido con **React 19** y **Vite**.
 
-This contains everything you need to run your app locally.
+## Requisitos
 
-View your app in AI Studio: https://ai.studio/apps/drive/1q5lLX_uNkrz4W3075SHyvn_m8vjvMMnj
+- Node.js 18+
 
-## Run Locally
+## Scripts disponibles
 
-**Prerequisites:**  Node.js
+1. Instalar dependencias:
+   ```bash
+   npm install
+   ```
+2. Ejecutar en modo desarrollo:
+   ```bash
+   npm run dev
+   ```
+3. Generar build de producción:
+   ```bash
+   npm run build
+   ```
+4. Previsualizar build local:
+   ```bash
+   npm run preview
+   ```
+5. Ejecutar pruebas unitarias:
+   ```bash
+   npm run test
+   ```
 
+## Estructura rápida
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- `App.tsx`: composición principal de secciones.
+- `components/`: componentes de interfaz.
+- `index.tsx`: punto de entrada de React.
+- `index.html`: plantilla base HTML.
