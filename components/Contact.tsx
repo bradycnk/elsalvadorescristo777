@@ -19,7 +19,7 @@ const Contact: React.FC = () => {
                         Contáctanos
                     </h2>
                     <p className="text-gray-600 text-center mb-8">
-                        Para unir tu iglesia, ser voluntario o realizar donaciones, por favor completa nuestro formulario oficial. Tus datos quedarán registrados seguramente en nuestro sistema.
+                        Para unir tu iglesia, ser voluntario o realizar donaciones, por favor completa nuestro formulario oficial. Tus datos quedarán registrados de forma segura en nuestro sistema.
                     </p>
 
                     <div className="w-full flex justify-center overflow-hidden bg-gray-50 rounded-lg">
