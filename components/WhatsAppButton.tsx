@@ -2,7 +2,7 @@
 import React from 'react';
 
 const WhatsAppButton: React.FC = () => {
-    const phoneNumber = "584164283899"; // Número formato internacional sin '+'
+    const phoneNumber = import.meta.env.VITE_WHATSAPP_PHONE ?? "";
     const message = "Hola, me gustaría obtener más información sobre la Alianza Global Solidaria.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
